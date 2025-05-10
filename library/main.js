@@ -1,3 +1,8 @@
+/**
+ * Initialize the ButtonScale class with a selector and parameters.
+ * @param {string} buttonSelector - The selector for the button elements.
+ * @param {Object} parameters - An object containing optional parameters such as hoverScale and clickScale. Default values are false if not provided.
+*/
 class ButtonScale {
 	constructor(buttonSelector, parameters) {
 		this.buttonSelector = buttonSelector;
@@ -8,6 +13,9 @@ class ButtonScale {
 		this.init()
 	}
 
+	/*
+	 * Initialize the button elements
+	*/
 	init() {
 		let elements = this.getElements();
 
@@ -18,6 +26,10 @@ class ButtonScale {
 		}
 	}
 
+	/**
+	 * Initialize the hover effect for the button elements
+	 * @param {Element} element - The button element to initialize the hover effect for.
+	*/
 	initHoverScale(element) {
 		element.addEventListener("mouseover", () => {
 			let scale = this.calculateScale(element.offsetWidth, this.hoverScale);
@@ -28,6 +40,10 @@ class ButtonScale {
 		});
 	}
 
+	/**
+	 * Initialize the click effect for the button elements
+	 * @param {Element} element - The button element to initialize the click effect for.
+	*/
 	initMouseDownScale(element) {
 		element.addEventListener("mousedown", () => {
 			let scale = this.calculateScale(element.offsetWidth, this.clickScale);
@@ -39,12 +55,22 @@ class ButtonScale {
 		});
 	}
 
+	/**
+	 * Calculate the new scale value based on the original width and the transform scale
+	 * @param {number} elementWidth - The width of the button element.
+	 * @param {number} transformScale - The value to scale the button on hover or click.
+	 * @returns {number} The new scale value.
+	*/
 	calculateScale(elementWidth, transformScale) {
 		let originalWidth = elementWidth;
 		let updatedWidth = elementWidth + transformScale;
-		return (updatedWidth / originalWidth).toFixed(2);
+		return (updatedWidth / originalWidth).toFixed(2); // Round to 2 decimal places before returning
 	}
 
+	/**
+	 * Initialize the hover effect for the button elements
+	 * @returns {Element[]} An array of all the button elements.
+	*/
 	getElements() {
 		return document.querySelectorAll(this.buttonSelector);
 	}
