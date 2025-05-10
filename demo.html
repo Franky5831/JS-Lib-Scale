@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Demo</title>
+	<link rel="stylesheet" href="/demo.css">
+</head>
+
+<body>
+	<h1>Demo</h1>
+	<button class="scaleButton">Click Me</button>
+	<button class="scaleButton">Click Me Too</button>
+	<button class="scaleButton">Click Me Tree</button>
+	<script src="/library/main.js"></script>
+	<script>
+		let buttons = new ButtonScale(".scaleButton", {
+			hoverScale: 15, // The value to scale the button on hover
+			clickScale: -5, // The value to scale the button on click
+
+			// TODO:
+			// watchElements: true, // Whether or not to watch for changes in the elements
+			// addClasses: true, // Whether or not to add classes to the elements
+		});
+	</script>
+</body>
+
+</html>
