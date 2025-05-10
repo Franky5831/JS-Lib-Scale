@@ -1,0 +1,31 @@
+# Button Scale Library
+Ever wanted to add a scale animation to your buttons?\
+If you have you probably faced a problem: **you can't scale elements based on a fixed amount of pixels, you can only scale them based on their size**.\
+That's why I created this library.
+
+## Installation
+```html
+<!-- Add the library to your project -->
+<script src="/library/main.js"></script>
+
+<!-- Target button -->
+<button class="scaleButton">Click Me</button>
+
+<!-- Initialize the library -->
+<script>
+	new ButtonScale(".scaleButton", { // The selector for your buttons
+		hoverScale: 15, // The value to scale the button on hover
+		clickScale: -5, // The value to scale the button on click
+	});
+</script>
+```
+
+### Example:
+<button class="scaleButton">Click Me</button>
+<script>
+	new ButtonScale(".scaleButton", { // The selector for your buttons
+		hoverScale: 15, // The value to scale the button on hover
+		clickScale: -5, // The value to scale the button on click
+	});
+</script>
+[Go to the demo for more](TODO_add_the_url_to_the_demo).
