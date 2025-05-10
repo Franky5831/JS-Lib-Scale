@@ -8,12 +8,14 @@
 	<link rel="stylesheet" href="/demo.css">
 </head>
 
-<body>
+<body id="app">
 	<h1>Demo</h1>
-	<button class="scaleButton">Click Me</button>
-	<button class="scaleButton">Click Me Too</button>
-	<button class="scaleButton">Click Me Tree</button>
-	<script src="/library/main.js"></script>
+	<div class="scaleButtonContainer">
+		<button class="scaleButton">Click Me</button>
+		<button class="scaleButton">Click Me Too</button>
+		<button class="scaleButton">Click Me Tree</button>
+		<script src="/library/main.js"></script>
+	</div>
 	<script>
 		let buttons = new ButtonScale(".scaleButton", {
 			hoverScale: 15, // The value to scale the button on hover
