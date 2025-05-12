@@ -6,7 +6,7 @@ That's why I created this library.
 ## Installation
 ```html
 <!-- Add the library to your project -->
-<script src="/library/main.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Franky5831/JS-Lib-Scale/library/main.js"></script>
 
 <!-- Target button -->
 <button class="scaleButton">Click Me</button>
@@ -19,8 +19,3 @@ That's why I created this library.
 	});
 </script>
 ```
-
-### Example:
-<iframe src="/docs/demo.html" frameborder="0"></iframe>
-
-[Go to the demo for more](TODO_add_the_url_to_the_demo).
