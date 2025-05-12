@@ -21,11 +21,6 @@ That's why I created this library.
 ```
 
 ### Example:
-<button class="scaleButton">Click Me</button>
-<script>
-	new ButtonScale(".scaleButton", { // The selector for your buttons
-		hoverScale: 15, // The value to scale the button on hover
-		clickScale: -5, // The value to scale the button on click
-	});
-</script>
+<iframe src="/docs/demo.html" frameborder="0"></iframe>
+
 [Go to the demo for more](TODO_add_the_url_to_the_demo).
