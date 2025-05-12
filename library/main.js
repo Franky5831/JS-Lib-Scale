@@ -32,7 +32,7 @@ class ButtonScale {
 	*/
 	initHoverScale(element) {
 		element.addEventListener("mouseover", () => {
-			let scale = this.calculateScale(element.offsetWidth, this.hoverScale);
+			let scale = this.calculateScale(element, this.hoverScale);
 			element.style.transform = `scale(${scale})`;
 		});
 		element.addEventListener("mouseleave", () => {
@@ -46,11 +46,11 @@ class ButtonScale {
 	*/
 	initMouseDownScale(element) {
 		element.addEventListener("mousedown", () => {
-			let scale = this.calculateScale(element.offsetWidth, this.clickScale);
+			let scale = this.calculateScale(element, this.clickScale);
 			element.style.transform = `scale(${scale})`;
 		});
 		element.addEventListener("mouseup", () => {
-			let scale = this.calculateScale(element.offsetWidth, this.hoverScale);
+			let scale = this.calculateScale(element, this.hoverScale);
 			element.style.transform = `scale(${scale})`;
 		});
 	}
@@ -61,10 +61,21 @@ class ButtonScale {
 	 * @param {number} transformScale - The value to scale the button on hover or click.
 	 * @returns {number} The new scale value.
 	*/
-	calculateScale(elementWidth, transformScale) {
-		let originalWidth = elementWidth;
-		let updatedWidth = elementWidth + transformScale;
-		return (updatedWidth / originalWidth).toFixed(2); // Round to 2 decimal places before returning
+	calculateScale(element, transformScale) {
+		let elementWidth = element.offsetWidth;
+		let elementHeight = element.offsetHeight;
+
+		// We need the larger dimension to scale properly
+		let elementDimension;
+		if(elementHeight > elementWidth) {
+			elementDimension = elementHeight;
+		} else {
+			elementDimension = elementWidth;
+		}
+
+		let originalDimension = elementDimension;
+		let updatedDimension = elementDimension + transformScale;
+		return (updatedDimension / originalDimension).toFixed(2); // Round to 2 decimal places before returning
 	}
 
 	/**
