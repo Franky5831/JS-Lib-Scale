@@ -19,3 +19,8 @@ That's why I created this library.
 	});
 </script>
 ```
+
+## Example
+<iframe src="iframe-example.html" width="100%" style="border: none;margin: 0;"></iframe>
+
+[Go to the demo]({{baseUrl}}/demo.html ':ignore')

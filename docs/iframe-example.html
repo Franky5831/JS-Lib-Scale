@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Demo</title>
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="demo.css">
+</head>
+
+<body id="app" style="padding:10px;">
+	<div class="scaleButtonContainer">
+		<script src="https://cdn.jsdelivr.net/gh/Franky5831/JS-Lib-Scale/library/main.js"></script>
+		<button class="scaleButton">Click Me</button>
+	</div>
+	<script>
+		let buttons = new ButtonScale(".scaleButton", {
+			hoverScale: 15, // The value to scale the button on hover
+			clickScale: -5, // The value to scale the button on click
+		});
+	</script>
+</body>
+
+</html>
