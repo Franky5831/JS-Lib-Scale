@@ -57,7 +57,7 @@ class ButtonScale {
 
 	/**
 	 * Calculate the new scale value based on the original width and the transform scale
-	 * @param {number} elementWidth - The width of the button element.
+	 * @param {Element} element - The button element to calculate the scale for.
 	 * @param {number} transformScale - The value to scale the button on hover or click.
 	 * @returns {number} The new scale value.
 	*/
