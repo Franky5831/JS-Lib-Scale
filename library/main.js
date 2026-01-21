@@ -4,7 +4,7 @@
  *
  * @author Francesco Ciannavei
  * @license MIT
- * @version 1.0.0
+ * @version 1.0.1
  *
  * @see {@link https://github.com/Franky5831/JS-Lib-Scale|GitHub Repository}
  * @see {@link https://franky5831.github.io/JS-Lib-Scale/|Documentation}
