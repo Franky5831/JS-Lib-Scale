@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--
+	This file is used for development and testing purposes.
+	It provides a demo environment to test the ButtonScale library functionality.
+-->
 <html lang="en">
 
 <head>
@@ -14,6 +18,7 @@
 	<div class="scaleButtonContainer">
 		<button class="scaleButton">Click Me</button>
 		<button class="scaleButton">Click Me Too</button>
+		<button class="scaleButton" style="padding: 0;">A</button>
 		<button class="scaleButton">Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree<br>Click Me Tree</button>
 		<script src="/library/main.js"></script>
 	</div>
@@ -21,6 +26,8 @@
 		let buttons = new ButtonScale(".scaleButton", {
 			hoverScale: 15, // The value to scale the button on hover
 			clickScale: -5, // The value to scale the button on click
+            maxScale: 1.2, // The value to limit the maximum scale of the button
+            minScale: .99, // The value to limit the maximum scale of the button
 		});
 	</script>
 </body>
