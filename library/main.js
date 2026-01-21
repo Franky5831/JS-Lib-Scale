@@ -102,3 +102,8 @@ class ButtonScale {
 		return document.querySelectorAll(this.buttonSelector);
 	}
 }
+
+// Export for Node.js/CommonJS (for testing)
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+	module.exports = ButtonScale;
+}

@@ -1,0 +1,25 @@
+{
+	"name": "button-scale-library",
+	"version": "1.0.0",
+	"description": "A JavaScript library for adding pixel-based scale animations to buttons",
+	"main": "library/main.js",
+	"scripts": {
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "jest --coverage"
+	},
+	"keywords": [
+		"button",
+		"scale",
+		"animation",
+		"css",
+		"transform"
+	],
+	"author": "Francesco Ciannavei",
+	"license": "MIT",
+	"devDependencies": {
+		"@testing-library/dom": "^10.4.0",
+		"jest": "^29.7.0",
+		"jest-environment-jsdom": "^29.7.0"
+	}
+}
