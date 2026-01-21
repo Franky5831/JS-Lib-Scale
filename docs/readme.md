@@ -16,9 +16,18 @@ That's why I created this library.
 	new ButtonScale(".scaleButton", { // The selector for your buttons
 		hoverScale: 15, // The value to scale the button on hover
 		clickScale: -5, // The value to scale the button on click
+		maxScale: 1.2, // The maximum scale limit for the button
+		minScale: 0.9, // The minimum scale limit for the button
 	});
 </script>
 ```
+
+## Parameters
+All parameters are optional:
+- `hoverScale` - The pixel value to scale the button on hover
+- `clickScale` - The pixel value to scale the button on click
+- `maxScale` - The maximum scale limit for the button
+- `minScale` - The minimum scale limit for the button
 
 ## Example
 <iframe src="iframe-example.html" width="100%" style="border: none;margin: 0;"></iframe>
