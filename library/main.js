@@ -19,10 +19,15 @@ class ButtonScale {
 	constructor(buttonSelector, parameters) {
 		this.buttonSelector = buttonSelector;
 		this.parameters = parameters;
+
 		this.hoverScale = this.parameters.hoverScale || false;
 		this.clickScale = this.parameters.clickScale || false;
+
 		this.maxScale = this.parameters.maxScale || false;
 		this.minScale = this.parameters.minScale || false;
+
+		this.hoverClass = this.parameters.hoverClass || false;
+		this.clickClass = this.parameters.clickClass || false;
 
 		this.init()
 	}
@@ -48,10 +53,13 @@ class ButtonScale {
 		element.addEventListener("mouseover", () => {
 			let scale = this.calculateScale(element, this.hoverScale);
 			if (this.maxScale && (scale > this.maxScale)) scale = this.maxScale;
+			if (this.hoverClass) element.classList.add(this.hoverClass)
 			element.style.transform = `scale(${scale})`;
 		});
+
 		element.addEventListener("mouseleave", () => {
 			element.style.transform = `scale(1)`;
+			if (this.hoverClass) element.classList.remove(this.hoverClass)
 		});
 	}
 
@@ -63,11 +71,14 @@ class ButtonScale {
 		element.addEventListener("mousedown", () => {
 			let scale = this.calculateScale(element, this.clickScale);
 			if (this.minScale && (scale < this.minScale)) scale = this.minScale;
+			if (this.clickClass) element.classList.add(this.clickClass)
 			element.style.transform = `scale(${scale})`;
 		});
+
 		element.addEventListener("mouseup", () => {
 			let scale = this.calculateScale(element, this.hoverScale);
 			element.style.transform = `scale(${scale})`;
+			if (this.clickClass) element.classList.remove(this.clickClass)
 		});
 	}
 
