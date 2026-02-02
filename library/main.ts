@@ -139,10 +139,4 @@ export class ButtonScale {
 	}
 }
 
-// Export for UMD (browser global)
-if (typeof window !== 'undefined') {
-	(window as any).ButtonScale = ButtonScale;
-}
-
-// Default export for convenience
 export default ButtonScale;
