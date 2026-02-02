@@ -3,11 +3,10 @@
  * Mostly AI generated BTW
  */
 
-// Import the ButtonScale class
-const ButtonScale = require('../library/main.js');
+import { ButtonScale } from '../library/main';
 
 describe('ButtonScale', () => {
-	let container;
+	let container: HTMLDivElement;
 
 	beforeEach(() => {
 		// Set up a fresh DOM for each test
@@ -27,7 +26,7 @@ describe('ButtonScale', () => {
 
 	describe('Constructor and Initialization', () => {
 		test('should create a ButtonScale instance with default parameters', () => {
-			const buttonScale = new ButtonScale('.test-button', {});
+			const buttonScale = new ButtonScale('.test-button', {}) as any;
 
 			expect(buttonScale.buttonSelector).toBe('.test-button');
 			expect(buttonScale.hoverScale).toBe(false);
@@ -37,14 +36,14 @@ describe('ButtonScale', () => {
 		});
 
 		test('should create instance with hoverScale parameter', () => {
-			const buttonScale = new ButtonScale('.test-button', { hoverScale: 10 });
+			const buttonScale = new ButtonScale('.test-button', { hoverScale: 10 }) as any;
 
 			expect(buttonScale.hoverScale).toBe(10);
 			expect(buttonScale.clickScale).toBe(false);
 		});
 
 		test('should create instance with clickScale parameter', () => {
-			const buttonScale = new ButtonScale('.test-button', { clickScale: -5 });
+			const buttonScale = new ButtonScale('.test-button', { clickScale: -5 }) as any;
 
 			expect(buttonScale.hoverScale).toBe(false);
 			expect(buttonScale.clickScale).toBe(-5);
@@ -54,7 +53,7 @@ describe('ButtonScale', () => {
 			const buttonScale = new ButtonScale('.test-button', {
 				hoverScale: 10,
 				clickScale: -5
-			});
+			}) as any;
 
 			expect(buttonScale.hoverScale).toBe(10);
 			expect(buttonScale.clickScale).toBe(-5);
@@ -64,7 +63,7 @@ describe('ButtonScale', () => {
 			const buttonScale = new ButtonScale('.test-button', {
 				hoverScale: 20,
 				maxScale: 1.15
-			});
+			}) as any;
 
 			expect(buttonScale.maxScale).toBe(1.15);
 		});
@@ -73,7 +72,7 @@ describe('ButtonScale', () => {
 			const buttonScale = new ButtonScale('.test-button', {
 				clickScale: -20,
 				minScale: 0.85
-			});
+			}) as any;
 
 			expect(buttonScale.minScale).toBe(0.85);
 		});
@@ -84,7 +83,7 @@ describe('ButtonScale', () => {
 				clickScale: -5,
 				maxScale: 1.2,
 				minScale: 0.8
-			});
+			}) as any;
 
 			expect(buttonScale.hoverScale).toBe(10);
 			expect(buttonScale.clickScale).toBe(-5);
@@ -95,7 +94,7 @@ describe('ButtonScale', () => {
 
 	describe('getElements', () => {
 		test('should return all elements matching the selector', () => {
-			const buttonScale = new ButtonScale('.test-button', {});
+			const buttonScale = new ButtonScale('.test-button', {}) as any;
 			const elements = buttonScale.getElements();
 
 			expect(elements.length).toBe(2);
@@ -104,7 +103,7 @@ describe('ButtonScale', () => {
 		});
 
 		test('should return correct element for different selector', () => {
-			const buttonScale = new ButtonScale('.different-button', {});
+			const buttonScale = new ButtonScale('.different-button', {}) as any;
 			const elements = buttonScale.getElements();
 
 			expect(elements.length).toBe(1);
@@ -112,7 +111,7 @@ describe('ButtonScale', () => {
 		});
 
 		test('should return empty NodeList for non-existent selector', () => {
-			const buttonScale = new ButtonScale('.non-existent', {});
+			const buttonScale = new ButtonScale('.non-existent', {}) as any;
 			const elements = buttonScale.getElements();
 
 			expect(elements.length).toBe(0);
@@ -120,12 +119,12 @@ describe('ButtonScale', () => {
 	});
 
 	describe('calculateScale', () => {
-		let buttonScale;
-		let element;
+		let buttonScale: any;
+		let element: HTMLElement;
 
 		beforeEach(() => {
-			buttonScale = new ButtonScale('.test-button', {});
-			element = document.querySelector('.test-button');
+			buttonScale = new ButtonScale('.test-button', {}) as any;
+			element = document.querySelector('.test-button') as HTMLElement;
 
 			// Mock offsetWidth and offsetHeight
 			Object.defineProperty(element, 'offsetWidth', {
@@ -144,7 +143,7 @@ describe('ButtonScale', () => {
 			// Original dimension: 100 (width is larger)
 			// Updated dimension: 110
 			// Scale: 110/100 = 1.10
-			expect(scale).toBe('1.10');
+			expect(scale).toBe(1.10);
 		});
 
 		test('should calculate correct scale for negative transform (click)', () => {
@@ -153,7 +152,7 @@ describe('ButtonScale', () => {
 			// Original dimension: 100
 			// Updated dimension: 90
 			// Scale: 90/100 = 0.90
-			expect(scale).toBe('0.90');
+			expect(scale).toBe(0.90);
 		});
 
 		test('should use larger dimension when height is greater than width', () => {
@@ -171,7 +170,7 @@ describe('ButtonScale', () => {
 			// Original dimension: 100 (height is larger)
 			// Updated dimension: 110
 			// Scale: 110/100 = 1.10
-			expect(scale).toBe('1.10');
+			expect(scale).toBe(1.10);
 		});
 
 		test('should use width when width equals height', () => {
@@ -189,7 +188,7 @@ describe('ButtonScale', () => {
 			// Original dimension: 100
 			// Updated dimension: 120
 			// Scale: 120/100 = 1.20
-			expect(scale).toBe('1.20');
+			expect(scale).toBe(1.20);
 		});
 
 		test('should round to 2 decimal places', () => {
@@ -207,14 +206,14 @@ describe('ButtonScale', () => {
 			// Original dimension: 99
 			// Updated dimension: 109
 			// Scale: 109/99 = 1.101010... should round to 1.10
-			expect(scale).toBe('1.10');
+			expect(scale).toBe(1.10);
 		});
 	});
 
 	describe('Hover Scale Functionality', () => {
 		test('should apply hover scale on mouseover', () => {
 			const buttonScale = new ButtonScale('.test-button', { hoverScale: 10 });
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -229,12 +228,12 @@ describe('ButtonScale', () => {
 			const mouseoverEvent = new Event('mouseover');
 			element.dispatchEvent(mouseoverEvent);
 
-			expect(element.style.transform).toBe('scale(1.10)');
+			expect(element.style.transform).toBe('scale(1.1)');
 		});
 
 		test('should reset scale on mouseleave', () => {
 			const buttonScale = new ButtonScale('.test-button', { hoverScale: 10 });
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -250,7 +249,7 @@ describe('ButtonScale', () => {
 			const mouseleaveEvent = new Event('mouseleave');
 
 			element.dispatchEvent(mouseoverEvent);
-			expect(element.style.transform).toBe('scale(1.10)');
+			expect(element.style.transform).toBe('scale(1.1)');
 
 			element.dispatchEvent(mouseleaveEvent);
 			expect(element.style.transform).toBe('scale(1)');
@@ -258,7 +257,7 @@ describe('ButtonScale', () => {
 
 		test('should not add hover listeners when hoverScale is false', () => {
 			const buttonScale = new ButtonScale('.test-button', { clickScale: -5 });
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -282,7 +281,7 @@ describe('ButtonScale', () => {
 				hoverScale: 20,
 				maxScale: 1.15
 			});
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -306,7 +305,7 @@ describe('ButtonScale', () => {
 				hoverScale: 10,
 				maxScale: 1.20
 			});
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -322,14 +321,14 @@ describe('ButtonScale', () => {
 			element.dispatchEvent(mouseoverEvent);
 
 			// Should be 1.10, which is below maxScale of 1.20
-			expect(element.style.transform).toBe('scale(1.10)');
+			expect(element.style.transform).toBe('scale(1.1)');
 		});
 	});
 
 	describe('Click Scale Functionality', () => {
 		test('should apply click scale on mousedown', () => {
 			const buttonScale = new ButtonScale('.test-button', { clickScale: -10 });
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -344,7 +343,7 @@ describe('ButtonScale', () => {
 			const mousedownEvent = new Event('mousedown');
 			element.dispatchEvent(mousedownEvent);
 
-			expect(element.style.transform).toBe('scale(0.90)');
+			expect(element.style.transform).toBe('scale(0.9)');
 		});
 
 		test('should reset to hover scale on mouseup when hoverScale is set', () => {
@@ -352,7 +351,7 @@ describe('ButtonScale', () => {
 				hoverScale: 10,
 				clickScale: -10
 			});
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -368,15 +367,15 @@ describe('ButtonScale', () => {
 			const mouseupEvent = new Event('mouseup');
 
 			element.dispatchEvent(mousedownEvent);
-			expect(element.style.transform).toBe('scale(0.90)');
+			expect(element.style.transform).toBe('scale(0.9)');
 
 			element.dispatchEvent(mouseupEvent);
-			expect(element.style.transform).toBe('scale(1.10)');
+			expect(element.style.transform).toBe('scale(1.1)');
 		});
 
-		test('should reset to scale(1.00) on mouseup when hoverScale is false', () => {
+		test('should reset to scale(1) on mouseup when hoverScale is false', () => {
 			const buttonScale = new ButtonScale('.test-button', { clickScale: -10 });
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -392,16 +391,16 @@ describe('ButtonScale', () => {
 			const mouseupEvent = new Event('mouseup');
 
 			element.dispatchEvent(mousedownEvent);
-			expect(element.style.transform).toBe('scale(0.90)');
+			expect(element.style.transform).toBe('scale(0.9)');
 
 			element.dispatchEvent(mouseupEvent);
-			// When hoverScale is false (0), calculateScale returns "1.00"
-			expect(element.style.transform).toBe('scale(1.00)');
+			// When hoverScale is false (0), calculateScale returns 1
+			expect(element.style.transform).toBe('scale(1)');
 		});
 
 		test('should not add click listeners when clickScale is false', () => {
 			const buttonScale = new ButtonScale('.test-button', { hoverScale: 10 });
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -425,7 +424,7 @@ describe('ButtonScale', () => {
 				clickScale: -20,
 				minScale: 0.85
 			});
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -449,7 +448,7 @@ describe('ButtonScale', () => {
 				clickScale: -10,
 				minScale: 0.80
 			});
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -465,7 +464,7 @@ describe('ButtonScale', () => {
 			element.dispatchEvent(mousedownEvent);
 
 			// Should be 0.90, which is above minScale of 0.80
-			expect(element.style.transform).toBe('scale(0.90)');
+			expect(element.style.transform).toBe('scale(0.9)');
 		});
 	});
 
@@ -489,14 +488,14 @@ describe('ButtonScale', () => {
 			const mouseoverEvent = new Event('mouseover');
 			elements[0].dispatchEvent(mouseoverEvent);
 
-			expect(elements[0].style.transform).toBe('scale(1.10)');
+			expect((elements[0] as HTMLElement).style.transform).toBe('scale(1.1)');
 
 			// Second element should not be affected
-			expect(elements[1].style.transform).toBe('');
+			expect((elements[1] as HTMLElement).style.transform).toBe('');
 
 			// Trigger mouseover on second element
 			elements[1].dispatchEvent(mouseoverEvent);
-			expect(elements[1].style.transform).toBe('scale(1.10)');
+			expect((elements[1] as HTMLElement).style.transform).toBe('scale(1.1)');
 		});
 
 		test('should apply click effect to all matching elements independently', () => {
@@ -518,10 +517,10 @@ describe('ButtonScale', () => {
 			const mousedownEvent = new Event('mousedown');
 			elements[0].dispatchEvent(mousedownEvent);
 
-			expect(elements[0].style.transform).toBe('scale(0.90)');
+			expect((elements[0] as HTMLElement).style.transform).toBe('scale(0.9)');
 
 			// Second element should not be affected
-			expect(elements[1].style.transform).toBe('');
+			expect((elements[1] as HTMLElement).style.transform).toBe('');
 		});
 	});
 
@@ -529,7 +528,7 @@ describe('ButtonScale', () => {
 		test('should handle zero transform scale', () => {
 			// When hoverScale is 0 (falsy), hover listeners are not added
 			const buttonScale = new ButtonScale('.test-button', { hoverScale: 0 });
-			const element = document.querySelector('.test-button');
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -548,8 +547,8 @@ describe('ButtonScale', () => {
 		});
 
 		test('should handle very small elements', () => {
-			const buttonScale = new ButtonScale('.test-button', { hoverScale: 10 });
-			const element = document.querySelector('.test-button');
+			const buttonScale = new ButtonScale('.test-button', { hoverScale: 10 }) as any;
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -563,12 +562,12 @@ describe('ButtonScale', () => {
 			const scale = buttonScale.calculateScale(element, 10);
 
 			// 10 + 10 = 20, 20/10 = 2.00
-			expect(scale).toBe('2.00');
+			expect(scale).toBe(2.00);
 		});
 
 		test('should handle negative scale values correctly', () => {
-			const buttonScale = new ButtonScale('.test-button', { clickScale: -50 });
-			const element = document.querySelector('.test-button');
+			const buttonScale = new ButtonScale('.test-button', { clickScale: -50 }) as any;
+			const element = document.querySelector('.test-button') as HTMLElement;
 
 			Object.defineProperty(element, 'offsetWidth', {
 				configurable: true,
@@ -582,7 +581,7 @@ describe('ButtonScale', () => {
 			const scale = buttonScale.calculateScale(element, -50);
 
 			// 100 - 50 = 50, 50/100 = 0.50
-			expect(scale).toBe('0.50');
+			expect(scale).toBe(0.50);
 		});
 	});
 });
