@@ -33,6 +33,8 @@ describe('ButtonScale', () => {
 			expect(buttonScale.clickScale).toBe(false);
 			expect(buttonScale.maxScale).toBe(false);
 			expect(buttonScale.minScale).toBe(false);
+			expect(buttonScale.hoverClass).toBe(false);
+			expect(buttonScale.clickClass).toBe(false);
 		});
 
 		test('should create instance with hoverScale parameter', () => {
@@ -465,6 +467,331 @@ describe('ButtonScale', () => {
 
 			// Should be 0.90, which is above minScale of 0.80
 			expect(element.style.transform).toBe('scale(0.9)');
+		});
+	});
+
+	describe('HoverClass Functionality', () => {
+		test('should add hoverClass on mouseover', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				hoverScale: 10,
+				hoverClass: 'hover-active'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mouseover event
+			const mouseoverEvent = new Event('mouseover');
+			element.dispatchEvent(mouseoverEvent);
+
+			expect(element.classList.contains('hover-active')).toBe(true);
+		});
+
+		test('should remove hoverClass on mouseleave', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				hoverScale: 10,
+				hoverClass: 'hover-active'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mouseover then mouseleave
+			const mouseoverEvent = new Event('mouseover');
+			const mouseleaveEvent = new Event('mouseleave');
+
+			element.dispatchEvent(mouseoverEvent);
+			expect(element.classList.contains('hover-active')).toBe(true);
+
+			element.dispatchEvent(mouseleaveEvent);
+			expect(element.classList.contains('hover-active')).toBe(false);
+		});
+
+		test('should handle multiple classes in hoverClass', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				hoverScale: 10,
+				hoverClass: 'hover-active hover-glow'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mouseover event
+			const mouseoverEvent = new Event('mouseover');
+			element.dispatchEvent(mouseoverEvent);
+
+			expect(element.classList.contains('hover-active')).toBe(true);
+			expect(element.classList.contains('hover-glow')).toBe(true);
+
+			// Trigger mouseleave event
+			const mouseleaveEvent = new Event('mouseleave');
+			element.dispatchEvent(mouseleaveEvent);
+
+			expect(element.classList.contains('hover-active')).toBe(false);
+			expect(element.classList.contains('hover-glow')).toBe(false);
+		});
+
+		test('should not add classes when hoverClass is false', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				hoverScale: 10
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mouseover event
+			const mouseoverEvent = new Event('mouseover');
+			element.dispatchEvent(mouseoverEvent);
+
+			// Should have transform but no classes
+			expect(element.style.transform).toBe('scale(1.1)');
+			expect(element.className).toBe('test-button');
+		});
+
+		test('should work with hoverClass without hoverScale', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				hoverClass: 'hover-active'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			// Trigger mouseover event
+			const mouseoverEvent = new Event('mouseover');
+			element.dispatchEvent(mouseoverEvent);
+
+			// No hover listeners should be added when hoverScale is false
+			expect(element.classList.contains('hover-active')).toBe(false);
+		});
+
+		test('should handle empty string hoverClass', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				hoverScale: 10,
+				hoverClass: ''
+			}) as any;
+
+			expect(buttonScale.hoverClass).toBe(false);
+		});
+
+		test('should handle whitespace-only hoverClass', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				hoverScale: 10,
+				hoverClass: '   '
+			}) as any;
+
+			expect(buttonScale.hoverClass).toBe(false);
+		});
+	});
+
+	describe('ClickClass Functionality', () => {
+		test('should add clickClass on mousedown', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				clickScale: -10,
+				clickClass: 'click-active'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mousedown event
+			const mousedownEvent = new Event('mousedown');
+			element.dispatchEvent(mousedownEvent);
+
+			expect(element.classList.contains('click-active')).toBe(true);
+		});
+
+		test('should remove clickClass on mouseup', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				clickScale: -10,
+				clickClass: 'click-active'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mousedown then mouseup
+			const mousedownEvent = new Event('mousedown');
+			const mouseupEvent = new Event('mouseup');
+
+			element.dispatchEvent(mousedownEvent);
+			expect(element.classList.contains('click-active')).toBe(true);
+
+			element.dispatchEvent(mouseupEvent);
+			expect(element.classList.contains('click-active')).toBe(false);
+		});
+
+		test('should handle multiple classes in clickClass', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				clickScale: -10,
+				clickClass: 'click-active click-pressed'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mousedown event
+			const mousedownEvent = new Event('mousedown');
+			element.dispatchEvent(mousedownEvent);
+
+			expect(element.classList.contains('click-active')).toBe(true);
+			expect(element.classList.contains('click-pressed')).toBe(true);
+
+			// Trigger mouseup event
+			const mouseupEvent = new Event('mouseup');
+			element.dispatchEvent(mouseupEvent);
+
+			expect(element.classList.contains('click-active')).toBe(false);
+			expect(element.classList.contains('click-pressed')).toBe(false);
+		});
+
+		test('should not add classes when clickClass is false', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				clickScale: -10
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mousedown event
+			const mousedownEvent = new Event('mousedown');
+			element.dispatchEvent(mousedownEvent);
+
+			// Should have transform but no classes
+			expect(element.style.transform).toBe('scale(0.9)');
+			expect(element.className).toBe('test-button');
+		});
+
+		test('should work with clickClass without clickScale', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				clickClass: 'click-active'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			// Trigger mousedown event
+			const mousedownEvent = new Event('mousedown');
+			element.dispatchEvent(mousedownEvent);
+
+			// No click listeners should be added when clickScale is false
+			expect(element.classList.contains('click-active')).toBe(false);
+		});
+
+		test('should handle empty string clickClass', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				clickScale: -10,
+				clickClass: ''
+			}) as any;
+
+			expect(buttonScale.clickClass).toBe(false);
+		});
+
+		test('should handle whitespace-only clickClass', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				clickScale: -10,
+				clickClass: '   '
+			}) as any;
+
+			expect(buttonScale.clickClass).toBe(false);
+		});
+
+		test('should work with both hoverClass and clickClass together', () => {
+			const buttonScale = new ButtonScale('.test-button', {
+				hoverScale: 10,
+				clickScale: -10,
+				hoverClass: 'hover-active',
+				clickClass: 'click-active'
+			});
+			const element = document.querySelector('.test-button') as HTMLElement;
+
+			Object.defineProperty(element, 'offsetWidth', {
+				configurable: true,
+				value: 100
+			});
+			Object.defineProperty(element, 'offsetHeight', {
+				configurable: true,
+				value: 50
+			});
+
+			// Trigger mouseover event
+			const mouseoverEvent = new Event('mouseover');
+			element.dispatchEvent(mouseoverEvent);
+
+			expect(element.classList.contains('hover-active')).toBe(true);
+			expect(element.classList.contains('click-active')).toBe(false);
+
+			// Trigger mousedown event
+			const mousedownEvent = new Event('mousedown');
+			element.dispatchEvent(mousedownEvent);
+
+			expect(element.classList.contains('hover-active')).toBe(true);
+			expect(element.classList.contains('click-active')).toBe(true);
+
+			// Trigger mouseup event
+			const mouseupEvent = new Event('mouseup');
+			element.dispatchEvent(mouseupEvent);
+
+			expect(element.classList.contains('hover-active')).toBe(true);
+			expect(element.classList.contains('click-active')).toBe(false);
+
+			// Trigger mouseleave event
+			const mouseleaveEvent = new Event('mouseleave');
+			element.dispatchEvent(mouseleaveEvent);
+
+			expect(element.classList.contains('hover-active')).toBe(false);
+			expect(element.classList.contains('click-active')).toBe(false);
 		});
 	});
 
