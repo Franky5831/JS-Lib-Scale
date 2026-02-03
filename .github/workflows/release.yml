@@ -40,11 +40,12 @@ jobs:
           zip -r button-scale-library-${{ github.event.release.tag_name }}.zip dist/
 
       - name: Upload release assets
-        uses: softprops/action-gh-release@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: |
-            button-scale-library-${{ github.event.release.tag_name }}.tar.gz
-            button-scale-library-${{ github.event.release.tag_name }}.zip
-            dist/main.js
-            dist/main.d.ts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} \
+            button-scale-library-${{ github.event.release.tag_name }}.tar.gz \
+            button-scale-library-${{ github.event.release.tag_name }}.zip \
+            dist/main.js \
+            dist/main.d.ts \
+            --clobber
