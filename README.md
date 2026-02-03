@@ -9,10 +9,8 @@ That's why I created this library.
 - **Pixel-based scaling** - Scale buttons by exact pixel amounts instead of percentages
 - **Hover effects** - Add smooth scale animations on mouse hover
 - **Click effects** - Add press-down effects when buttons are clicked
-- **CSS class toggling** - Add/remove CSS classes on hover and click events
 - **Max/Min constraints** - Limit scaling with maximum and minimum scale values
 - **Multiple elements** - Apply effects to multiple buttons with a single instance
-- **TypeScript** - Written in TypeScript with type definitions
 - **Lightweight** - Pure JavaScript with no dependencies
 - **Browser compatible** - Works in all modern browsers
 
@@ -26,23 +24,13 @@ Include the library in your HTML via CDN:
 
 ## Usage
 
-### Basic scaling with hover and click effects
 ```javascript
+// Combine hover and click with constraints
 new ButtonScale('.my-button', {
-  hoverScale: 15,      // Grow by 15px on hover
-  clickScale: -10,     // Shrink by 10px on click
-  maxScale: 1.2,       // Don't scale larger than 1.2x
-  minScale: 0.9        // Don't scale smaller than 0.9x
-});
-```
-
-### Add CSS classes on interactions
-```javascript
-new ButtonScale('.my-button', {
-  hoverClass: 'glow shadow',   // Add multiple classes on hover
-  clickClass: 'pressed',       // Add class on click
-  hoverScale: 10,              // Can combine with scaling
-  clickScale: -5
+  hoverScale: 15,
+  clickScale: -10,
+  maxScale: 1.2,   // Don't scale larger than 1.2x
+  minScale: 0.9    // Don't scale smaller than 0.9x
 });
 ```
 
