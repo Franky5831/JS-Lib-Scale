@@ -2,24 +2,39 @@
 	"name": "button-scale-library",
 	"version": "1.0.1",
 	"description": "A JavaScript library for adding pixel-based scale animations to buttons",
-	"main": "library/main.js",
+	"main": "dist/main.js",
+	"types": "dist/main.d.ts",
+	"files": [
+		"dist"
+	],
 	"scripts": {
+		"build": "rollup -c",
+		"build:watch": "rollup -c --watch",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:coverage": "jest --coverage"
+		"test:coverage": "jest --coverage",
+		"prepublishOnly": "npm run build"
 	},
 	"keywords": [
 		"button",
 		"scale",
 		"animation",
 		"css",
-		"transform"
+		"transform",
+		"typescript"
 	],
 	"author": "Francesco Ciannavei",
 	"license": "MIT",
 	"devDependencies": {
+		"@rollup/plugin-typescript": "^12.3.0",
 		"@testing-library/dom": "^10.4.0",
+		"@types/jest": "^30.0.0",
 		"jest": "^29.7.0",
-		"jest-environment-jsdom": "^29.7.0"
+		"jest-environment-jsdom": "^29.7.0",
+		"rollup": "^4.57.1",
+		"rollup-plugin-dts": "^6.3.0",
+		"ts-jest": "^29.4.6",
+		"tslib": "^2.8.1",
+		"typescript": "^5.9.3"
 	}
 }

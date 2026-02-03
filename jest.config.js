@@ -1,11 +1,12 @@
 module.exports = {
+	preset: 'ts-jest',
 	testEnvironment: 'jsdom',
 	testMatch: [
-		'**/tests/**/*.test.js'
+		'**/tests/**/*.test.ts'
 	],
 	collectCoverageFrom: [
-		'library/**/*.js',
-		'!library/**/*.test.js'
+		'library/**/*.ts',
+		'!library/**/*.test.ts'
 	],
 	coverageThreshold: {
 		global: {
