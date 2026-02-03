@@ -6,7 +6,7 @@ That's why I created this library.
 ## Installation
 ```html
 <!-- Add the library to your project (version 1.0.1) -->
-<script src="https://cdn.jsdelivr.net/gh/Franky5831/JS-Lib-Scale@1.0.1/library/main.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Franky5831/JS-Lib-Scale@1.0.1/dist/main.js"></script>
 
 <!-- Target button -->
 <button class="scaleButton">Click Me</button>
