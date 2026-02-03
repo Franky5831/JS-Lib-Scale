@@ -15,7 +15,7 @@ export default [
  *
  * @author Francesco Ciannavei
  * @license MIT
- * @version 1.0.1
+ * @version 1.0.2
  *
  * @see {@link https://github.com/Franky5831/JS-Lib-Scale|GitHub Repository}
  * @see {@link https://franky5831.github.io/JS-Lib-Scale/|Documentation}
