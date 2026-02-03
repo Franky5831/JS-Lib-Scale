@@ -42,10 +42,9 @@ jobs:
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           files: |
             button-scale-library-${{ github.event.release.tag_name }}.tar.gz
             button-scale-library-${{ github.event.release.tag_name }}.zip
             dist/main.js
             dist/main.d.ts
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
