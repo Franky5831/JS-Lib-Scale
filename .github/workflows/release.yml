@@ -6,8 +6,9 @@ permissions:
   attestations: write
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -35,17 +36,18 @@ jobs:
       - name: Create distribution archive
         run: |
           cd dist
-          tar -czf ../button-scale-library-${{ github.event.release.tag_name }}.tar.gz *
+          tar -czf ../button-scale-library-${{ github.ref_name }}.tar.gz *
           cd ..
-          zip -r button-scale-library-${{ github.event.release.tag_name }}.zip dist/
+          zip -r button-scale-library-${{ github.ref_name }}.zip dist/
 
-      - name: Upload release assets
+      - name: Create Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload ${{ github.event.release.tag_name }} \
-            button-scale-library-${{ github.event.release.tag_name }}.tar.gz \
-            button-scale-library-${{ github.event.release.tag_name }}.zip \
+          gh release create ${{ github.ref_name }} \
+            button-scale-library-${{ github.ref_name }}.tar.gz \
+            button-scale-library-${{ github.ref_name }}.zip \
             dist/main.js \
             dist/main.d.ts \
-            --clobber
+            --title "Release ${{ github.ref_name }}" \
+            --generate-notes
