@@ -2,6 +2,7 @@
 	"name": "button-scale-library",
 	"version": "1.0.1",
 	"description": "A JavaScript library for adding pixel-based scale animations to buttons",
+	"type": "module",
 	"main": "dist/main.js",
 	"types": "dist/main.d.ts",
 	"files": [
