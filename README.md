@@ -19,7 +19,7 @@ That's why I created this library.
 Include the library in your HTML via CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/Franky5831/JS-Lib-Scale@1.0.2/dist/main.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Franky5831/JS-Lib-Scale@1.0.1/dist/main.js"></script>
 ```
 
 ## Usage
